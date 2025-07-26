@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="refresh" content="5">
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f9f9f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+    .container {
+      background: white;
+      padding: 2em;
+      border: 1px solid #ccc;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .url-preview {
+      margin-top: 1em;
+      color: #007bff;
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Sedang mengarahkan...</h1>
+    <p>Mohon tunggu sebentar. Anda akan diarahkan ke:</p>
+    <p class="url-preview" id="target-url"></p>
+  </div>
+
+  <script>
+    // Ambil parameter ?url=...
+    const params = new URLSearchParams(window.location.search);
+    const target = params.get('url');
+
+    const fallback = 'https://eraspace.com/artikel/post/apa-itu-fb-pro-ini-dia-sejumlah-fitur-dan-cara-mengaktifkannya'; // jika tidak ada parameter
+
+    if (target) {
+      document.getElementById('target-url').textContent = target;
+
+      // Delay redirect 3 detik
+      setTimeout(() => {
+        window.location.href = target;
+      }, 3000);
+    } else {
+      document.getElementById('target-url').textContent = fallback;
+      setTimeout(() => {
+        window.location.href = fallback;
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
